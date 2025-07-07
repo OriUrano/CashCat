@@ -39,11 +39,11 @@
 		</div>
 
 		{#if $creditCards.length > 0}
-			<div class="mt-6 bg-white bg-opacity-20 rounded-2xl p-4">
-				<h3 class="text-white font-semibold mb-2">Your Cards ({$creditCards.length})</h3>
+			<div class="mt-6 bg-white rounded-2xl p-4 shadow-lg">
+				<h3 class="text-gray-800 font-semibold mb-2">Your Cards ({$creditCards.length})</h3>
 				<div class="space-y-2">
 					{#each $creditCards as card}
-						<div class="bg-white bg-opacity-30 rounded-lg p-3 text-white">
+						<div class="bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg p-3 text-white">
 							<div class="font-medium">{card.name}</div>
 							<div class="text-sm opacity-90">{card.issuer}</div>
 						</div>
