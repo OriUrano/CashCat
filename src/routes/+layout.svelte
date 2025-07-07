@@ -3,7 +3,6 @@
 	import Navigation from '$lib/components/Navigation.svelte';
 
 	let { children } = $props();
-	let activeTab = $state<'home' | 'cards' | 'add'>('home');
 </script>
 
 <svelte:head>
@@ -15,4 +14,4 @@
 	{@render children()}
 </div>
 
-<Navigation bind:activeTab />
+<Navigation />

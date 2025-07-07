@@ -2,6 +2,9 @@
 	import { onMount } from 'svelte';
 	import { creditCards, recommendations } from '$lib/stores.js';
 	import { CASH_BACK_CATEGORIES } from '$lib/types.js';
+	import CardForm from '$lib/components/CardForm.svelte';
+
+	let showCardForm = false;
 
 	onMount(() => {
 		creditCards.loadCards();
@@ -11,6 +14,14 @@
 		if ($creditCards.length > 0) {
 			recommendations.updateRecommendations($creditCards);
 		}
+	}
+
+	function openAddForm() {
+		showCardForm = true;
+	}
+
+	function closeForm() {
+		showCardForm = false;
 	}
 </script>
 
@@ -27,7 +38,10 @@
 					<div class="text-6xl mb-4">🐱</div>
 					<h2 class="text-2xl font-bold text-gray-800 mb-2">Welcome to CashCat!</h2>
 					<p class="text-gray-600 mb-6">Add your credit cards to get started and find the best cash back rewards for every purchase.</p>
-					<button class="bg-purple-500 text-white px-8 py-3 rounded-full font-semibold hover:bg-purple-600 transition-colors">
+					<button 
+						on:click={openAddForm}
+						class="bg-purple-500 text-white px-8 py-3 rounded-full font-semibold hover:bg-purple-600 transition-colors"
+					>
 						Add Your First Card
 					</button>
 				</div>
@@ -71,3 +85,7 @@
 		{/if}
 	</div>
 </div>
+
+{#if showCardForm}
+	<CardForm onClose={closeForm} />
+{/if}
