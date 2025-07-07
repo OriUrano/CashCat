@@ -9,12 +9,14 @@
 	let cardName = editingCard?.name || '';
 	let cardIssuer = editingCard?.issuer || '';
 	let cardColor = editingCard?.color || '#8b5cf6';
-	let cashBackRules: CashBackRule[] = editingCard?.cashBackRules || 
-		CASH_BACK_CATEGORIES.map(cat => ({
+	let cashBackRules: CashBackRule[] = CASH_BACK_CATEGORIES.map(cat => {
+		const existingRule = editingCard?.cashBackRules.find(rule => rule.category === cat.value);
+		return existingRule || {
 			category: cat.value,
 			percentage: 0,
 			isActive: false
-		}));
+		};
+	});
 
 	function handleSubmit() {
 		if (!cardName.trim() || !cardIssuer.trim()) return;
