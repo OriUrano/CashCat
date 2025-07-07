@@ -13,7 +13,7 @@
 <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-4 py-2 safe-area-pb">
 	<div class="flex justify-around items-center max-w-md mx-auto">
 		<button 
-			class="flex flex-col items-center p-2 {activeTab === 'home' ? 'text-purple-600' : 'text-gray-500'}"
+			class="flex flex-col items-center p-3 min-h-[60px] rounded-lg transition-all duration-200 active:scale-95 {activeTab === 'home' ? 'text-purple-600 bg-purple-50' : 'text-gray-500 hover:bg-gray-50'}"
 			on:click={() => navigateTo('/')}
 		>
 			<span class="text-xl mb-1">🏠</span>
@@ -21,7 +21,7 @@
 		</button>
 		
 		<button 
-			class="flex flex-col items-center p-2 {activeTab === 'cards' ? 'text-purple-600' : 'text-gray-500'}"
+			class="flex flex-col items-center p-3 min-h-[60px] rounded-lg transition-all duration-200 active:scale-95 {activeTab === 'cards' ? 'text-purple-600 bg-purple-50' : 'text-gray-500 hover:bg-gray-50'}"
 			on:click={() => navigateTo('/cards')}
 		>
 			<span class="text-xl mb-1">🎴</span>
@@ -29,7 +29,7 @@
 		</button>
 		
 		<button 
-			class="flex flex-col items-center p-2 {activeTab === 'add' ? 'text-purple-600' : 'text-gray-500'}"
+			class="flex flex-col items-center p-3 min-h-[60px] rounded-lg transition-all duration-200 active:scale-95 {activeTab === 'add' ? 'text-purple-600 bg-purple-50' : 'text-gray-500 hover:bg-gray-50'}"
 			on:click={() => navigateTo('/add')}
 		>
 			<span class="text-xl mb-1">➕</span>

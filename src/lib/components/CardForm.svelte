@@ -54,7 +54,7 @@
 				</h2>
 				<button 
 					on:click={onClose}
-					class="text-gray-500 hover:text-gray-700 text-2xl"
+					class="text-gray-500 hover:text-gray-700 text-2xl p-2 rounded-full hover:bg-gray-100 active:scale-95 transition-all duration-200 min-h-[44px] min-w-[44px] touch-manipulation"
 				>
 					✕
 				</button>
@@ -71,7 +71,7 @@
 						bind:value={cardName}
 						type="text" 
 						placeholder="e.g., Chase Freedom Unlimited"
-						class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+						class="w-full px-4 py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-base min-h-[56px] touch-manipulation"
 					/>
 				</div>
 
@@ -83,7 +83,7 @@
 						bind:value={cardIssuer}
 						type="text" 
 						placeholder="e.g., Chase"
-						class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+						class="w-full px-4 py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-base min-h-[56px] touch-manipulation"
 					/>
 				</div>
 
@@ -137,14 +137,14 @@
 			<div class="flex space-x-3 pt-4">
 				<button 
 					on:click={onClose}
-					class="flex-1 px-6 py-3 border border-gray-300 text-gray-700 rounded-lg font-semibold hover:bg-gray-50 transition-colors"
+					class="flex-1 px-6 py-4 border border-gray-300 text-gray-700 rounded-lg font-semibold hover:bg-gray-50 active:scale-95 transition-all duration-200 min-h-[56px] touch-manipulation"
 				>
 					Cancel
 				</button>
 				<button 
 					on:click={handleSubmit}
 					disabled={!cardName.trim() || !cardIssuer.trim()}
-					class="flex-1 px-6 py-3 bg-purple-500 text-white rounded-lg font-semibold hover:bg-purple-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+					class="flex-1 px-6 py-4 bg-purple-500 text-white rounded-lg font-semibold hover:bg-purple-600 disabled:opacity-50 disabled:cursor-not-allowed active:scale-95 transition-all duration-200 min-h-[56px] touch-manipulation"
 				>
 					{editingCard ? 'Update Card' : 'Add Card'}
 				</button>

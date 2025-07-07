@@ -40,7 +40,7 @@
 					<p class="text-gray-600 mb-6">Add your credit cards to get started and find the best cash back rewards for every purchase.</p>
 					<button 
 						on:click={openAddForm}
-						class="bg-purple-500 text-white px-8 py-3 rounded-full font-semibold hover:bg-purple-600 transition-colors"
+						class="bg-purple-500 text-white px-8 py-4 rounded-full font-semibold hover:bg-purple-600 active:scale-95 transition-all duration-200 min-h-[56px] touch-manipulation"
 					>
 						Add Your First Card
 					</button>
