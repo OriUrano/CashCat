@@ -2,6 +2,7 @@
 	import { creditCards } from '$lib/stores.js';
 	import { CASH_BACK_CATEGORIES } from '$lib/types.js';
 	import type { CreditCard, CashBackRule } from '$lib/types.js';
+	import { X } from 'lucide-svelte';
 
 	export let onClose: () => void;
 	export let editingCard: CreditCard | null = null;
@@ -56,9 +57,9 @@
 				</h2>
 				<button 
 					on:click={onClose}
-					class="text-gray-500 hover:text-gray-700 text-2xl p-2 rounded-full hover:bg-gray-100 active:scale-95 transition-all duration-200 min-h-[44px] min-w-[44px] touch-manipulation"
+					class="text-gray-500 hover:text-gray-700 p-2 rounded-full hover:bg-gray-100 active:scale-95 transition-all duration-200 min-h-[44px] min-w-[44px] touch-manipulation"
 				>
-					✕
+					<X class="w-6 h-6" />
 				</button>
 			</div>
 		</div>
@@ -97,11 +98,11 @@
 						<input 
 							bind:value={cardColor}
 							type="color"
-							class="w-12 h-12 border border-gray-300 rounded-lg"
+							class="w-12 h-12 border border-gray-300 rounded-lg cursor-pointer"
 						/>
 						<div class="flex-1">
 							<div 
-								class="w-full h-12 rounded-lg"
+								class="w-full h-12 rounded-lg border border-gray-200"
 								style="background: linear-gradient(135deg, {cardColor}, {cardColor}aa)"
 							></div>
 						</div>
@@ -116,7 +117,7 @@
 						{@const rule = cashBackRules.find(r => r.category === category.value)}
 						<div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
 							<div class="flex items-center space-x-3">
-								<span class="text-xl">{category.icon}</span>
+								<svelte:component this={category.icon} class="w-5 h-5 text-gray-600" />
 								<span class="font-medium text-gray-800">{category.label}</span>
 							</div>
 							<div class="flex items-center space-x-2">
@@ -127,9 +128,9 @@
 									step="0.25"
 									value={rule?.percentage || 0}
 									on:input={(e) => updateCashBackRule(category.value, parseFloat(e.target.value) || 0)}
-									class="w-16 px-2 py-1 border border-gray-300 rounded text-center"
+									class="w-20 px-3 py-2 border border-gray-300 rounded-lg text-center focus:ring-2 focus:ring-purple-500 focus:border-transparent min-h-[44px] touch-manipulation"
 								/>
-								<span class="text-sm text-gray-600">%</span>
+								<span class="text-sm text-gray-600 font-medium">%</span>
 							</div>
 						</div>
 					{/each}

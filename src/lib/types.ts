@@ -31,15 +31,28 @@ export interface CategoryRecommendation {
 	percentage: number;
 }
 
-export const CASH_BACK_CATEGORIES: { value: CashBackCategory; label: string; icon: string }[] = [
-	{ value: 'groceries', label: 'Groceries', icon: '🛒' },
-	{ value: 'gas', label: 'Gas', icon: '⛽' },
-	{ value: 'restaurants', label: 'Restaurants', icon: '🍽️' },
-	{ value: 'travel', label: 'Travel', icon: '✈️' },
-	{ value: 'entertainment', label: 'Entertainment', icon: '🎬' },
-	{ value: 'shopping', label: 'Shopping', icon: '🛍️' },
-	{ value: 'streaming', label: 'Streaming', icon: '📺' },
-	{ value: 'utilities', label: 'Utilities', icon: '💡' },
-	{ value: 'pharmacies', label: 'Pharmacies', icon: '💊' },
-	{ value: 'general', label: 'General', icon: '💳' }
+import { 
+	ShoppingCart, 
+	Fuel, 
+	UtensilsCrossed, 
+	Plane, 
+	Film, 
+	Store, 
+	Tv, 
+	Zap, 
+	Pill, 
+	CreditCard 
+} from 'lucide-svelte';
+
+export const CASH_BACK_CATEGORIES: { value: CashBackCategory; label: string; icon: any }[] = [
+	{ value: 'groceries', label: 'Groceries', icon: ShoppingCart },
+	{ value: 'gas', label: 'Gas', icon: Fuel },
+	{ value: 'restaurants', label: 'Restaurants', icon: UtensilsCrossed },
+	{ value: 'travel', label: 'Travel', icon: Plane },
+	{ value: 'entertainment', label: 'Entertainment', icon: Film },
+	{ value: 'shopping', label: 'Shopping', icon: Store },
+	{ value: 'streaming', label: 'Streaming', icon: Tv },
+	{ value: 'utilities', label: 'Utilities', icon: Zap },
+	{ value: 'pharmacies', label: 'Pharmacies', icon: Pill },
+	{ value: 'general', label: 'General', icon: CreditCard }
 ];

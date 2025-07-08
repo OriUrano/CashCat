@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import { creditCards } from '$lib/stores.js';
 	import CardForm from '$lib/components/CardForm.svelte';
+	import { Plus, CreditCard } from 'lucide-svelte';
 
 	let showCardForm = false;
 
@@ -21,12 +22,15 @@
 <div class="min-h-screen bg-gradient-to-br from-purple-500 to-pink-500 p-4">
 	<div class="max-w-md mx-auto">
 		<header class="text-center mb-8">
-			<h1 class="text-3xl font-bold text-white mb-2">➕ Add New Card</h1>
+			<h1 class="text-3xl font-bold text-white mb-2 flex items-center justify-center gap-3">
+				<Plus class="w-7 h-7 text-white" />
+				Add New Card
+			</h1>
 			<p class="text-purple-100">Add your credit cards to maximize cash back rewards</p>
 		</header>
 
 		<div class="bg-white rounded-2xl p-8 shadow-xl text-center">
-			<div class="text-6xl mb-4">💳</div>
+			<CreditCard class="w-20 h-20 mx-auto mb-4 text-purple-500" />
 			<h2 class="text-2xl font-bold text-gray-800 mb-2">Ready to Add a Card?</h2>
 			<p class="text-gray-600 mb-6">Enter your credit card details and configure cash back categories to get personalized recommendations.</p>
 			

@@ -4,6 +4,7 @@
 	import { CASH_BACK_CATEGORIES } from '$lib/types.js';
 	import CardForm from '$lib/components/CardForm.svelte';
 	import type { CreditCard } from '$lib/types.js';
+	import { CreditCard as CreditCardIcon } from 'lucide-svelte';
 
 	let showCardForm = false;
 	let editingCard: CreditCard | null = null;
@@ -37,7 +38,10 @@
 <div class="min-h-screen bg-gradient-to-br from-purple-500 to-pink-500 p-4">
 	<div class="max-w-md mx-auto">
 		<header class="flex items-center justify-between mb-8">
-			<h1 class="text-3xl font-bold text-white">🎴 Your Cards</h1>
+			<h1 class="text-3xl font-bold text-white flex items-center gap-3">
+				<CreditCardIcon class="w-7 h-7 text-white" />
+				Your Cards
+			</h1>
 			<button 
 				on:click={openAddForm}
 				class="bg-white text-purple-600 px-4 py-2 rounded-full font-semibold hover:bg-gray-100 transition-colors"
@@ -48,7 +52,7 @@
 
 		{#if $creditCards.length === 0}
 			<div class="bg-white rounded-2xl p-8 shadow-xl text-center">
-				<div class="text-6xl mb-4">💳</div>
+				<CreditCardIcon class="w-20 h-20 mx-auto mb-4 text-purple-500" />
 				<h2 class="text-2xl font-bold text-gray-800 mb-2">No Cards Yet</h2>
 				<p class="text-gray-600 mb-6">Add your first credit card to start tracking cash back rewards.</p>
 				<button 
@@ -98,7 +102,7 @@
 										{#if category && rule.isActive}
 											<div class="flex items-center justify-between p-2 bg-gray-50 rounded-lg">
 												<div class="flex items-center space-x-2">
-													<span class="text-sm">{category.icon}</span>
+													<svelte:component this={category.icon} class="w-4 h-4 text-gray-600" />
 													<span class="text-xs text-gray-700">{category.label}</span>
 												</div>
 												<span class="text-xs font-bold text-purple-600">{rule.percentage}%</span>

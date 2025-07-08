@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
+	import { Home, CreditCard, Plus } from 'lucide-svelte';
 
 	$: activeTab = $page.url.pathname === '/cards' ? 'cards' : 
 	               $page.url.pathname === '/add' ? 'add' : 'home';
@@ -16,7 +17,7 @@
 			class="flex flex-col items-center p-3 min-h-[60px] rounded-lg transition-all duration-200 active:scale-95 {activeTab === 'home' ? 'text-purple-600 bg-purple-50' : 'text-gray-500 hover:bg-gray-50'}"
 			on:click={() => navigateTo('/')}
 		>
-			<span class="text-xl mb-1">🏠</span>
+			<Home class="w-5 h-5 mb-1 {activeTab === 'home' ? 'text-purple-600' : 'text-gray-500'}" />
 			<span class="text-xs font-medium">Home</span>
 		</button>
 		
@@ -24,7 +25,7 @@
 			class="flex flex-col items-center p-3 min-h-[60px] rounded-lg transition-all duration-200 active:scale-95 {activeTab === 'cards' ? 'text-purple-600 bg-purple-50' : 'text-gray-500 hover:bg-gray-50'}"
 			on:click={() => navigateTo('/cards')}
 		>
-			<span class="text-xl mb-1">🎴</span>
+			<CreditCard class="w-5 h-5 mb-1 {activeTab === 'cards' ? 'text-purple-600' : 'text-gray-500'}" />
 			<span class="text-xs font-medium">Cards</span>
 		</button>
 		
@@ -32,7 +33,7 @@
 			class="flex flex-col items-center p-3 min-h-[60px] rounded-lg transition-all duration-200 active:scale-95 {activeTab === 'add' ? 'text-purple-600 bg-purple-50' : 'text-gray-500 hover:bg-gray-50'}"
 			on:click={() => navigateTo('/add')}
 		>
-			<span class="text-xl mb-1">➕</span>
+			<Plus class="w-5 h-5 mb-1 {activeTab === 'add' ? 'text-purple-600' : 'text-gray-500'}" />
 			<span class="text-xs font-medium">Add</span>
 		</button>
 	</div>
