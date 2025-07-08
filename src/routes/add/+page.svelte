@@ -3,6 +3,8 @@
 	import { creditCards } from '$lib/stores.js';
 	import CardForm from '$lib/components/CardForm.svelte';
 	import { Plus, CreditCard } from 'lucide-svelte';
+	import { fly } from 'svelte/transition';
+	import { quintOut } from 'svelte/easing';
 
 	let showCardForm = false;
 
@@ -48,7 +50,7 @@
 			
 			<button 
 				on:click={openAddForm}
-				class="bg-purple-500 text-white px-8 py-3 rounded-full font-semibold hover:bg-purple-600 transition-colors w-full"
+				class="bg-purple-500 text-white px-8 py-3 rounded-full font-semibold hover:bg-purple-600 hover:shadow-lg active:scale-95 transform transition-all duration-200 w-full"
 			>
 				Add Credit Card
 			</button>
@@ -61,12 +63,13 @@
 					Your Cards
 				</h2>
 				<div class="space-y-3">
-					{#each $creditCards as card}
+					{#each $creditCards as card, i (card.id)}
 						{@const cardColor = card.color || '#8b5cf6'}
 						{@const isLight = isLightColor(cardColor)}
 						<div 
 							class="p-4 rounded-lg {isLight ? 'text-black border border-black' : 'text-white'}" 
 							style="background: linear-gradient(135deg, {cardColor}, {cardColor}aa)"
+							transition:fly={{ x: 20, duration: 300, delay: i * 50, easing: quintOut }}
 						>
 							<div class="font-bold text-lg">{card.name}</div>
 							<div class="text-sm {isLight ? 'opacity-70' : 'opacity-90'}">{card.issuer}</div>

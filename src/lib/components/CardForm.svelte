@@ -3,6 +3,8 @@
 	import { CASH_BACK_CATEGORIES } from '$lib/types.js';
 	import type { CreditCard, CashBackRule } from '$lib/types.js';
 	import { X } from 'lucide-svelte';
+	import { fly, fade } from 'svelte/transition';
+	import { quintOut } from 'svelte/easing';
 
 	export let onClose: () => void;
 	export let editingCard: CreditCard | null = null;
@@ -48,8 +50,8 @@
 	}
 </script>
 
-<div class="fixed inset-0 bg-black bg-opacity-50 flex items-end z-50">
-	<div class="bg-white w-full max-h-[90vh] rounded-t-3xl overflow-y-auto">
+<div class="fixed inset-0 bg-black bg-opacity-50 flex items-end z-50" transition:fade={{ duration: 200 }}>
+	<div class="bg-white w-full max-h-[90vh] rounded-t-3xl overflow-y-auto" transition:fly={{ y: 400, duration: 300, easing: quintOut }}>
 		<div class="sticky top-0 bg-white px-6 py-4 border-b border-gray-200">
 			<div class="flex items-center justify-between">
 				<h2 class="text-xl font-bold text-gray-800">
@@ -74,7 +76,7 @@
 						bind:value={cardName}
 						type="text" 
 						placeholder="e.g., Chase Freedom Unlimited"
-						class="w-full px-4 py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-base min-h-[56px] touch-manipulation"
+						class="w-full px-4 py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent focus:shadow-md text-base min-h-[56px] touch-manipulation transition-all duration-200"
 					/>
 				</div>
 
@@ -86,7 +88,7 @@
 						bind:value={cardIssuer}
 						type="text" 
 						placeholder="e.g., Chase"
-						class="w-full px-4 py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-base min-h-[56px] touch-manipulation"
+						class="w-full px-4 py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent focus:shadow-md text-base min-h-[56px] touch-manipulation transition-all duration-200"
 					/>
 				</div>
 
@@ -128,7 +130,7 @@
 									step="0.25"
 									value={rule?.percentage || 0}
 									on:input={(e) => updateCashBackRule(category.value, parseFloat(e.target.value) || 0)}
-									class="w-20 px-3 py-2 border border-gray-300 rounded-lg text-center focus:ring-2 focus:ring-purple-500 focus:border-transparent min-h-[44px] touch-manipulation"
+									class="w-20 px-3 py-2 border border-gray-300 rounded-lg text-center focus:ring-2 focus:ring-purple-500 focus:border-transparent focus:shadow-md min-h-[44px] touch-manipulation transition-all duration-200"
 								/>
 								<span class="text-sm text-gray-600 font-medium">%</span>
 							</div>
@@ -140,14 +142,14 @@
 			<div class="flex space-x-3 pt-4">
 				<button 
 					on:click={onClose}
-					class="flex-1 px-6 py-4 border border-gray-300 text-gray-700 rounded-lg font-semibold hover:bg-gray-50 active:scale-95 transition-all duration-200 min-h-[56px] touch-manipulation"
+					class="flex-1 px-6 py-4 border border-gray-300 text-gray-700 rounded-lg font-semibold hover:bg-gray-50 hover:border-gray-400 active:scale-95 transform transition-all duration-200 min-h-[56px] touch-manipulation"
 				>
 					Cancel
 				</button>
 				<button 
 					on:click={handleSubmit}
 					disabled={!cardName.trim() || !cardIssuer.trim()}
-					class="flex-1 px-6 py-4 bg-purple-500 text-white rounded-lg font-semibold hover:bg-purple-600 disabled:opacity-50 disabled:cursor-not-allowed active:scale-95 transition-all duration-200 min-h-[56px] touch-manipulation"
+					class="flex-1 px-6 py-4 bg-purple-500 text-white rounded-lg font-semibold hover:bg-purple-600 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed active:scale-95 transform transition-all duration-200 min-h-[56px] touch-manipulation"
 				>
 					{editingCard ? 'Update Card' : 'Add Card'}
 				</button>

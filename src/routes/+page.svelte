@@ -4,6 +4,8 @@
 	import { CASH_BACK_CATEGORIES } from '$lib/types.js';
 	import CardForm from '$lib/components/CardForm.svelte';
 	import { CreditCard, Cat, DollarSign } from 'lucide-svelte';
+	import { fly, fade } from 'svelte/transition';
+	import { quintOut } from 'svelte/easing';
 
 	let showCardForm = false;
 
@@ -56,7 +58,7 @@
 					<p class="text-gray-600 mb-6">Add your credit cards to get started and find the best cash back rewards for every purchase.</p>
 					<button 
 						on:click={openAddForm}
-						class="bg-purple-500 text-white px-8 py-4 rounded-full font-semibold hover:bg-purple-600 active:scale-95 transition-all duration-200 min-h-[56px] touch-manipulation"
+						class="bg-purple-500 text-white px-8 py-4 rounded-full font-semibold hover:bg-purple-600 hover:shadow-lg active:scale-95 transform transition-all duration-200 min-h-[56px] touch-manipulation"
 					>
 						Add Your First Card
 					</button>
@@ -69,8 +71,9 @@
 					Best Cash Back
 				</h2>
 				<div class="space-y-3">
-					{#each $recommendations as rec}
-						<div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+					{#each $recommendations as rec, i (rec.category)}
+						<div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg" 
+							 transition:fly={{ x: 20, duration: 300, delay: i * 50, easing: quintOut }}>
 							<div class="flex items-center space-x-3">
 								<svelte:component this={CASH_BACK_CATEGORIES.find(cat => cat.value === rec.category)?.icon || CreditCard} class="w-5 h-5 text-gray-600" />
 								<div>
@@ -94,12 +97,13 @@
 					Your Cards
 				</h2>
 				<div class="space-y-3">
-					{#each $creditCards as card}
+					{#each $creditCards as card, i (card.id)}
 						{@const cardColor = card.color || '#8b5cf6'}
 						{@const isLight = isLightColor(cardColor)}
 						<div 
 							class="p-4 rounded-lg {isLight ? 'text-black border border-black' : 'text-white'}" 
 							style="background: linear-gradient(135deg, {cardColor}, {cardColor}aa)"
+							transition:fly={{ x: 20, duration: 300, delay: i * 50, easing: quintOut }}
 						>
 							<div class="font-bold text-lg">{card.name}</div>
 							<div class="text-sm {isLight ? 'opacity-70' : 'opacity-90'}">{card.issuer}</div>
