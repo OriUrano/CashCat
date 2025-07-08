@@ -17,6 +17,18 @@
 	function closeForm() {
 		showCardForm = false;
 	}
+
+	function isLightColor(color: string): boolean {
+		// Convert hex to RGB
+		const hex = color.replace('#', '');
+		const r = parseInt(hex.substr(0, 2), 16);
+		const g = parseInt(hex.substr(2, 2), 16);
+		const b = parseInt(hex.substr(4, 2), 16);
+		
+		// Calculate relative luminance
+		const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+		return luminance > 0.6;
+	}
 </script>
 
 <div class="min-h-screen bg-gradient-to-br from-purple-500 to-pink-500 p-4">
@@ -43,13 +55,21 @@
 		</div>
 
 		{#if $creditCards.length > 0}
-			<div class="mt-6 bg-white rounded-2xl p-4 shadow-lg">
-				<h3 class="text-gray-800 font-semibold mb-2">Your Cards ({$creditCards.length})</h3>
-				<div class="space-y-2">
+			<div class="mt-6 bg-white rounded-2xl p-6 shadow-xl">
+				<h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+					<CreditCard class="w-6 h-6 text-blue-500" />
+					Your Cards
+				</h2>
+				<div class="space-y-3">
 					{#each $creditCards as card}
-						<div class="bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg p-3 text-white">
-							<div class="font-medium">{card.name}</div>
-							<div class="text-sm opacity-90">{card.issuer}</div>
+						{@const cardColor = card.color || '#8b5cf6'}
+						{@const isLight = isLightColor(cardColor)}
+						<div 
+							class="p-4 rounded-lg {isLight ? 'text-black border border-black' : 'text-white'}" 
+							style="background: linear-gradient(135deg, {cardColor}, {cardColor}aa)"
+						>
+							<div class="font-bold text-lg">{card.name}</div>
+							<div class="text-sm {isLight ? 'opacity-70' : 'opacity-90'}">{card.issuer}</div>
 						</div>
 					{/each}
 				</div>
